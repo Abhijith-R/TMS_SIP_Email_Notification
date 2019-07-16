@@ -82,7 +82,9 @@ def set_flag(ip):
 def unset_flag(ip):
     # Unset flag if device is registered
     for k in endpoint_ip.__iter__():
-        endpoint_ip[ip] = "0"
+        if(endpoint_ip[ip] == "1"):
+            endpoint_ip[ip] = "0"
+            send_email_notification(ip.rstrip('/'), "back online")
 
 
 def get_sip_status(ip):
